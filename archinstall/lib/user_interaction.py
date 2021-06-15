@@ -700,7 +700,7 @@ def select_driver(options=AVAILABLE_GFX_DRIVERS):
 	"""
 
 	drivers = sorted(list(options))
-	
+
 	if drivers:
 		arguments = storage.get('arguments', {})
 		if has_amd_graphics():
@@ -711,10 +711,10 @@ def select_driver(options=AVAILABLE_GFX_DRIVERS):
 			print('For the best compatibility with your Nvidia hardware, you may want to use the Nvidia proprietary driver.')
 
 		arguments['gfx_driver'] = generic_select(drivers, input_text="Select a graphics driver or leave blank to install all open-source drivers: ")
-		
+
 		if arguments.get('gfx_driver', None) is None:
 			arguments['gfx_driver'] = "All open-source (default)"
-			
+
 		return options.get(arguments.get('gfx_driver'))
 
 	raise RequirementError("Selecting drivers require a least one profile to be given as an option.")
@@ -736,6 +736,10 @@ def select_kernel(options):
 	kernels = sorted(list(options))
 
 	if kernels:
-		return generic_multi_select(kernels, f"Choose which kernels to use (leave blank for default: {default_kernel}): ", default=default_kernel, sort=False)
+		result = generic_multi_select(kernels, f"Choose which kernels to use (leave blank for default: {default_kernel}): ", default=default_kernel, sort=False)
+		print("------------")
+		print(result)
+		print("------------")
+		return result
 
 	raise RequirementError("Selecting kernels require a least one kernel to be given as an option.")

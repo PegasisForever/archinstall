@@ -334,6 +334,10 @@ def perform_installation(mountpoint):
 	Only requirement is that the block devices are
 	formatted and setup prior to entering this function.
 	"""
+	print("------------")
+	print(archinstall.arguments.get('kernels'))
+	print(archinstall.arguments.get('kernels', ['linux']))
+	print("------------")
 	with archinstall.Installer(mountpoint, kernels=archinstall.arguments.get('kernels', 'linux')) as installation:
 		# if len(mirrors):
 		# Certain services might be running that affects the system during installation.

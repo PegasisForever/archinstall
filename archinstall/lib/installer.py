@@ -470,6 +470,10 @@ class Installer:
 				os.makedirs(f'{self.target}/boot/loader/entries')
 
 			for kernel in self.kernels:
+				print("------------")
+				print('write kernel entry')
+				print(kernel)
+				print("------------")
 				# Setup the loader entry
 				with open(f'{self.target}/boot/loader/entries/{self.init_time}_{kernel}.conf', 'w') as entry:
 					entry.write('# Created by: archinstall\n')
